@@ -1,7 +1,7 @@
 {
-  "name": "builtin-pages-lib",
+  "name": "dbrowser-bpages-lib",
   "version": "1.0.0",
-  "description": "Some common library code for Beaker's builtin pages.",
+  "description": "Library for dBrowser's built-in pages.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
