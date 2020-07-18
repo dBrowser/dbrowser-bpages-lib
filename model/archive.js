@@ -21,7 +21,7 @@ module.exports = class LibraryDatArchive extends DatArchive {
     this.progress = new ProgressMonitor(this)
 
     // wire up events
-    beaker.archives.addEventListener('updated', (this.onLibraryUpdated = e => {
+    dbrowserx.archives.addEventListener('updated', (this.onLibraryUpdated = e => {
       if (e.details.url === this.url) {
         this.getInfo().then(info => {
           this.info = info
@@ -55,7 +55,7 @@ module.exports = class LibraryDatArchive extends DatArchive {
   destroy () {
     // unwire events
     this.listeners = {}
-    beaker.archives.removeEventListener('updated', this.onLibraryUpdated)
+    dbrowserx.archives.removeEventListener('updated', this.onLibraryUpdated)
     if (this.progress) this.progress.destroy()
     this.progress = null
   }
@@ -84,12 +84,12 @@ module.exports = class LibraryDatArchive extends DatArchive {
 
   toggleSaved() {
     if (this.isSaved) {
-      beaker.archives.remove(this.url).then(() => {
+      dbrowserx.archives.remove(this.url).then(() => {
         this.info.userSettings.isSaved = false
         this.emitChanged()
       })
     } else {
-      beaker.archives.add(this.url).then(() => {
+      dbrowserx.archives.add(this.url).then(() => {
         this.info.userSettings.isSaved = true
         this.emitChanged()
       })
