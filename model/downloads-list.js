@@ -24,7 +24,7 @@ module.exports = class DownloadsList extends EventEmitter {
 
     // wire up events
     if (!dlEvents) {
-      dlEvents = beaker.downloads.createEventsStream()
+      dlEvents = dbrowser.downloads.createEventsStream()
     }
     dlEvents.addEventListener('new-download', this.onNewDownload)
     dlEvents.addEventListener('updated', this.onUpdateDownload)
@@ -33,7 +33,7 @@ module.exports = class DownloadsList extends EventEmitter {
 
   setup () {
     // fetch downloads
-    return beaker.downloads.getDownloads().then(downloads => {
+    return dbrowser.downloads.getDownloads().then(downloads => {
       this.downloads = downloads
     })
   }
@@ -50,15 +50,15 @@ module.exports = class DownloadsList extends EventEmitter {
   // =
 
   pauseDownload (download) {
-    beaker.downloads.pause(download.id)
+    dbrowser.downloads.pause(download.id)
   }
 
   resumeDownload (download) {
-    beaker.downloads.resume(download.id)
+    dbrowser.downloads.resume(download.id)
   }
 
   cancelDownload (download) {
-    beaker.downloads.cancel(download.id)
+    dbrowser.downloads.cancel(download.id)
   }
 
   copyDownloadLink (download) {
@@ -66,7 +66,7 @@ module.exports = class DownloadsList extends EventEmitter {
   }
 
   showDownload (download) {
-    beaker.downloads.showInFolder(download.id)
+    dbrowser.downloads.showInFolder(download.id)
       .catch(err => {
         download.fileNotFound = true
         this.emit('changed')
@@ -74,7 +74,7 @@ module.exports = class DownloadsList extends EventEmitter {
   }
 
   openDownload (download) {
-    beaker.downloads.open(download.id)
+    dbrowser.downloads.open(download.id)
       .catch(err => {
         download.fileNotFound = true
         this.emit('changed')
@@ -82,7 +82,7 @@ module.exports = class DownloadsList extends EventEmitter {
   }
 
   removeDownload (download) {
-    beaker.downloads.remove(download.id)
+    dbrowser.downloads.remove(download.id)
     this.downloads.splice(this.downloads.indexOf(download), 1)
     this.emit('changed')
   }

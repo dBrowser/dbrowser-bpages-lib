@@ -1,21 +1,21 @@
 {
-  "name": "builtin-pages-lib",
+  "name": "dbrowser-bpages-lib",
   "version": "1.0.0",
-  "description": "Some common library code for Beaker's builtin pages.",
+  "description": "Some common library code for DBrowser's builtin pages.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/beakerbrowser/builtin-pages-lib.git"
+    "url": "git+https://github.com/dbrowser/dbrowser-bpages-lib.git"
   },
-  "author": "Paul Frazee <pfrazee@gmail.com>",
+  "author": "jared <jared@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/beakerbrowser/builtin-pages-lib/issues"
+    "url": "https://github.com/dbrowser/dbrowser-bpages-lib/issues"
   },
-  "homepage": "https://github.com/beakerbrowser/builtin-pages-lib#readme",
+  "homepage": "https://github.com/dbrowser/dbrowser-bpages-lib#readme",
   "dependencies": {
     "co": "^4.6.0",
     "emit-stream": "^0.1.2",

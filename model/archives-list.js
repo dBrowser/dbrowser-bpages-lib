@@ -20,11 +20,11 @@ module.exports = class ArchivesList extends EventTarget {
     this.archives = []
 
     // wire up events
-    beaker.archives.addEventListener('added', this.onAdd.bind(this))
-    beaker.archives.addEventListener('removed', this.onRemove.bind(this))
-    beaker.archives.addEventListener('updated', this.onUpdate.bind(this))
+    dbrowser.archives.addEventListener('added', this.onAdd.bind(this))
+    dbrowser.archives.addEventListener('removed', this.onRemove.bind(this))
+    dbrowser.archives.addEventListener('updated', this.onUpdate.bind(this))
     if (listenNetwork) {
-      beaker.archives.addEventListener('network-changed', this.onNetworkChange.bind(this))
+      dbrowser.archives.addEventListener('network-changed', this.onNetworkChange.bind(this))
     }
 
     // create a throttled 'change' emiter
@@ -33,7 +33,7 @@ module.exports = class ArchivesList extends EventTarget {
 
   async setup (filter) {
     // fetch archives
-    this.archives = await beaker.archives.list(filter)
+    this.archives = await dbrowser.archives.list(filter)
     this.archives.sort(archiveSortFn)
   }
 
@@ -43,7 +43,7 @@ module.exports = class ArchivesList extends EventTarget {
   onAdd (e) {
     var archive = this.archives.find(a => a.url === e.details.url)
     if (archive) return
-    beaker.archives.get(e.details.url).then(archive => {
+    dbrowser.archives.get(e.details.url).then(archive => {
       this.archives.push(archive)
       this.emitChanged()
     })
